@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "standard"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+        "indent": ["error", 4],
+        "comma-dangle": ["error", "always-multiline"],
+        "new-parens": 0,
+        "no-duplicate-imports": 0
+    }
+}

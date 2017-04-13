@@ -1,0 +1,25 @@
+{
+  "name": "visualise-videocontext",
+  "version": "1.0.0",
+  "description": "Visualise a videocontext graph",
+  "main": "src/index.js",
+  "author": "Ben Robinson",
+  "license": "MIT",
+  "scripts": {
+      "start": "webpack --watch",
+      "build": "webpack -p"
+  },
+  "devDependencies": {
+      "babel-core": "^6.23.1",
+      "babel-eslint": "^7.1.1",
+      "babel-loader": "^6.3.2",
+      "babel-preset-latest": "^6.22.0",
+      "eslint": "^3.16.1",
+      "eslint-config-standard": "^6.2.1",
+      "eslint-loader": "^1.6.3",
+      "eslint-plugin-promise": "^3.4.2",
+      "eslint-plugin-standard": "^2.0.1",
+      "source-map-loader": "^0.1.6",
+      "webpack": "^2.2.1"
+  }
+}
