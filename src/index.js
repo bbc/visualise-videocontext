@@ -32,10 +32,10 @@ export default class VideoContextVisualisation {
                 {
                     selector: 'edge',
                     style: {
-                        'width': 3,
+                        'width': 5,
                         'line-color': '#000',
-                        'target-arrow-color': '#F0F',
-                        'target-arrow-shape': 'triangle',
+                        'mid-target-arrow-color': '#000',
+                        'mid-target-arrow-shape': 'triangle',
                     },
                 },
             ],
