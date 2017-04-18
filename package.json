@@ -2,7 +2,7 @@
     "name": "visualise-videocontext",
     "version": "1.0.0",
     "description": "Visualise a videocontext graph",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "author": "Ben Robinson",
     "license": "MIT",
     "scripts": {
