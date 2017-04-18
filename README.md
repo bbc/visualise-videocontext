@@ -4,7 +4,7 @@
 import VideoContext from 'videocontext'
 import VideoContextVisualisation from 'visualise-videocontext'
 
-// Set up VideoContext graph
+// 1. Set up VideoContext graph
 const vc = new VideoContext(document.getElementById('canvas'))
 const v1 = vc.video('http://somewebsite.com/some-video.mp4')
 v1.start(0)
@@ -13,8 +13,13 @@ v1.connect(eff)
 eff.connect(vc.destination)
 vc.play()
 
-// Visualise VideoContextGraph
-const vis = new VideoContextVisualisation(document.getElementById('vis'))
+// 2. Visualise VideoContextGraph
+
+const div = document.getElementById('vis')
+// eg <div id="vis"></div> with width and height set in css.
+
+const vis = new VideoContextVisualisation(div)
+
 vis.setValues(JSON.parse(VideoContext.exportToJSON(vc)))
 vis.render()
 
