@@ -1,6 +1,6 @@
 import cytoscape from 'cytoscape'
 import cydagre from 'cytoscape-dagre'
-import { createNode, setNodeLabel } from './utils.js'
+import { createNode, setNodeLabel, animateNodeChange } from './utils.js'
 
 cydagre(cytoscape)
 
@@ -59,14 +59,7 @@ export default class VideoContextVisualisation {
             }
             const didUpdate = setNodeLabel(ele, props)
             if (didUpdate) {
-                ele.stop(true, false)
-                ele.style('background-blacken', -1)
-                ele.animate({
-                    style: {
-                        'background-blacken': 0,
-                    },
-                    duration: 500,
-                })
+                animateNodeChange(ele)
             }
         })
     }

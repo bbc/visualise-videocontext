@@ -41,4 +41,15 @@ export const setNodeLabel = (node, props) => {
     return didUpdateAndWasNotInitialUpdate
 }
 
+export const animateNodeChange = ele => {
+    ele.stop(true, false)
+    ele.style('background-blacken', -1)
+    ele.animate({
+        style: {
+            'background-blacken': 0,
+        },
+        duration: 500,
+    })
+}
+
 export default createNode
