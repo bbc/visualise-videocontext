@@ -16,7 +16,7 @@ vc.play()
 
 const json = JSON.parse(VideoContext.exportToJSON(vc))
 
-const visualiseCanvas = document.getElementById('vis')
-const vis = new VideoContextVisualisation(visualiseCanvas)
+const canvas = document.getElementById('vis')
+const vis = new VideoContextVisualisation(canvas)
 vis.setValues(json)
 vis.render()
