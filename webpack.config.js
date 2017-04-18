@@ -8,7 +8,7 @@ module.exports = {
         libraryTarget: 'umd',
         library: 'visualise-videocontext',
     },
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
     module: {
         rules: [
             {
