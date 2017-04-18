@@ -57,7 +57,17 @@ export default class VideoContextVisualisation {
             if (ele.length === 0) {
                 ele = this._cy.add(createNode(id, props))
             }
-            setNodeLabel(ele, props)
+            const didUpdate = setNodeLabel(ele, props)
+            if (didUpdate) {
+                ele.stop(true, false)
+                ele.style('background-blacken', -1)
+                ele.animate({
+                    style: {
+                        'background-blacken': 0,
+                    },
+                    duration: 500,
+                })
+            }
         })
     }
 

@@ -32,7 +32,13 @@ const createLabel = props => {
 
 export const setNodeLabel = (node, props) => {
     const label = createLabel(props)
-    node.style('label', label)
+    const oldLabel = node.style('label')
+    const shouldUpdate = oldLabel !== label
+    if (shouldUpdate) {
+        node.style('label', label)
+    }
+    const didUpdateAndWasNotInitialUpdate = shouldUpdate && oldLabel !== ''
+    return didUpdateAndWasNotInitialUpdate
 }
 
 export default createNode
