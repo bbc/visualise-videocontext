@@ -33,6 +33,6 @@ vis.setValues(json)
 vis.render()
 
 setInterval(() => {
-    // const json = JSON.parse(VideoContext.exportToJSON(vc))
-    // vis.setValues(json)
+    const json = JSON.parse(VideoContext.exportToJSON(vc))
+    vis.setValues(json)
 }, 100)
