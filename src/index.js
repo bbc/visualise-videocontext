@@ -5,7 +5,8 @@ import { createNode, setNodeLabel, animateNodeChange } from './utils.js'
 cydagre(cytoscape)
 
 export default class VideoContextVisualisation {
-    constructor (div) {
+    constructor (div, shouldInvertCrossfades = false) {
+        this._shouldInvertCrossfades = shouldInvertCrossfades
         this._cy = cytoscape({
             container: div,
             elements: [],
@@ -101,7 +102,10 @@ export default class VideoContextVisualisation {
             if (input0IsConnected) {
                 const input0Id = props.inputs.find(inp => inp.index === 0).id
                 const input0Edge = this._cy.getElementById(`${id}_${input0Id}`)
-                const input0Opacity = mix
+                let input0Opacity = mix
+                if (this._shouldInvertCrossfades) {
+                    input0Opacity = 1 - mix
+                }
                 input0Edge.style('opacity', input0Opacity)
             }
 
@@ -109,7 +113,10 @@ export default class VideoContextVisualisation {
             if (input1IsConnected) {
                 const input1Id = props.inputs.find(inp => inp.index === 1).id
                 const input1Edge = this._cy.getElementById(`${id}_${input1Id}`)
-                const input1Opacity = 1 - mix
+                let input1Opacity = 1 - mix
+                if (this._shouldInvertCrossfades) {
+                    input1Opacity = mix
+                }
                 input1Edge.style('opacity', input1Opacity)
             }
         })
