@@ -13,7 +13,7 @@ v1.connect(eff)
 eff.connect(vc.destination)
 vc.play()
 
-// 2. Visualise VideoContextGraph
+// 2. Visualise VideoContext graph
 
 const div = document.getElementById('vis')
 // eg <div id="vis"></div> with width and height set in css.
