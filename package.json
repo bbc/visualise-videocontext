@@ -9,7 +9,7 @@
         "clean": "rimraf dist",
         "start": "webpack --watch",
         "build": "webpack -p",
-        "prepublishOnly": "yarn run clean && npm run build"
+        "prepublishOnly": "npm run clean && npm run build"
     },
     "devDependencies": {
         "babel-core": "^6.23.1",

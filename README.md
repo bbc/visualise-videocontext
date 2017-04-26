@@ -29,3 +29,8 @@ setInterval(() => {
     // No need to call render() a second time
 }, 100)
 ```
+
+# Development
+Do not use yarn! When you run `yarn` it seems to install dependencies incorrectly. I'm not sure what's causing this, but just use npm, at least for installing dependencies.
+
+However it *is* totally fine to use yarn in projects that include `visualise-videocontext` as a dependency.
