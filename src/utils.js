@@ -9,6 +9,18 @@ export const createNode = (id, props) => ({
     classes: props.type,
 })
 
+const formatTransitions = transitions => {
+    // TODO: this is so hacky
+    if (transitions.mix) {
+        const lines = transitions.mix.map(mix => {
+            return `Start: ${mix.start}s, value ${mix.current}. End: ${mix.end}s, value ${mix.target}`
+        })
+        return lines.join('\n')
+    } else {
+        return null
+    }
+}
+
 const createLabel = props => {
     switch (props.type) {
     case 'VideoNode':
@@ -20,7 +32,8 @@ const createLabel = props => {
     case 'CompositingNode':
         return `CompositingNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}`
     case 'TransitionNode':
-        return `TransitionNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}`
+        const transitionsString = formatTransitions(props.transitions) || stringify(props.transitions)
+        return `TransitionNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}\nTransitions:\n${transitionsString}`
     case 'EffectNode':
         return `EffectNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}`
     case 'Destination':
