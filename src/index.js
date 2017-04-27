@@ -51,7 +51,7 @@ export default class VideoContextVisualisation {
         this._cy.minZoom(this._cy.zoom())
     }
 
-    setNodes (data) {
+    _setNodes (data) {
         Object.keys(data).forEach(id => {
             const props = data[id]
             let ele = this._cy.getElementById(id)
@@ -65,7 +65,7 @@ export default class VideoContextVisualisation {
         })
     }
 
-    setEdges (data) {
+    _setEdges (data) {
         Object.keys(data).forEach(id => {
             const props = data[id]
             if (props.inputs) {
@@ -84,8 +84,8 @@ export default class VideoContextVisualisation {
     }
 
     setValues (data) {
-        this.setNodes(data)
-        this.setEdges(data)
+        this._setNodes(data)
+        this._setEdges(data)
         const edges = this._cy.$(ele => ele.isEdge())
         edges.forEach(edge => {
             setEdgeColours(edge, data)
