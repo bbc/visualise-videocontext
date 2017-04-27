@@ -1,7 +1,7 @@
 import cytoscape from 'cytoscape'
 import cydagre from 'cytoscape-dagre'
-import { createNode, setNodeLabel, animateNodeChange } from './utils.js'
-import { setEdgeColours } from './style.js'
+import { createNode, animateNodeChange } from './utils.js'
+import { setEdgeColours, setNodeLabel } from './style.js'
 
 cydagre(cytoscape)
 
