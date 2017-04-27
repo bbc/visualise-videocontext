@@ -9,15 +9,19 @@ export const createNode = (id, props) => ({
     classes: props.type,
 })
 
-const formatTransitions = transitions => {
-    // TODO: this is so hacky
-    if (transitions.mix) {
-        const lines = transitions.mix.map(mix => {
-            return `Start: ${mix.start}s, value ${mix.current}. End: ${mix.end}s, value ${mix.target}`
-        })
-        return lines.join('\n')
-    } else {
-        return null
+const formatTransitionInfo = transition => `Start: ${transition.start}s, value ${transition.current}. End: ${transition.end}s, value ${transition.target}`
+
+const formatTransitions = props => {
+    const transitions = props.transitions
+    switch (props.definition.title) {
+    case 'Cross-Fade':
+        return transitions.mix.map(formatTransitionInfo).join('\n')
+    case 'Opacity':
+        return transitions.opacity.map(formatTransitionInfo).join('\n')
+    default:
+        // We haven't set any special formatting for this shader so just nicely
+        // format the raw transitions info.
+        return stringify(props.transitions)
     }
 }
 
@@ -30,12 +34,13 @@ const createLabel = props => {
     case 'CanvasNode':
         return 'CanvasNode'
     case 'CompositingNode':
-        return `CompositingNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}`
+        return `CompositingNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}`
     case 'TransitionNode':
-        const transitionsString = formatTransitions(props.transitions) || stringify(props.transitions)
-        return `TransitionNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}\nTransitions:\n${transitionsString}`
+        console.log(props)
+        const transitionsString = formatTransitions(props)
+        return `TransitionNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}\nTransitions:\n${transitionsString}`
     case 'EffectNode':
-        return `EffectNode\nDefinition: ${props.definition.title}\nProperties: ${stringify(props.properties)}`
+        return `EffectNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}`
     case 'Destination':
         return 'Destination'
     default:
