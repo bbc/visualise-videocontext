@@ -28,10 +28,10 @@ const json = JSON.parse(VideoContext.exportToJSON(vc))
 const canvas = document.getElementById('vis')
 const vis = new VideoContextVisualisation(canvas)
 
-vis.setValues(json)
+vis.setData(json)
 vis.render()
 
 setInterval(() => {
     const json = JSON.parse(VideoContext.exportToJSON(vc))
-    vis.setValues(json)
+    vis.setData(json)
 }, 100)
