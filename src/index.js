@@ -83,7 +83,7 @@ export default class VideoContextVisualisation {
         })
     }
 
-    setValues (data) {
+    setData (data) {
         if (typeof data === 'string') {
             data = JSON.parse(data)
         }
