@@ -12,14 +12,13 @@ const transition = vc.transition(VideoContext.DEFINITIONS.CROSSFADE)
 transition.transition(0, 0, 0, 1, 'mix')
 transition.transition(5, 8, 1, 0, 'mix')
 
-const eff = vc.effect(VideoContext.DEFINITIONS.MONOCHROME)
+const mono = vc.effect(VideoContext.DEFINITIONS.MONOCHROME)
+const translucent = vc.effect(VideoContext.DEFINITIONS.OPACITY)
 
-const comp = vc.compositor(VideoContext.DEFINITIONS.COMBINE)
-
-video.connect(eff)
-video.connect(comp)
-eff.connect(transition)
-comp.connect(transition)
+video.connect(mono)
+video.connect(translucent)
+mono.connect(transition)
+translucent.connect(transition)
 transition.connect(vc.destination)
 
 vc.play()

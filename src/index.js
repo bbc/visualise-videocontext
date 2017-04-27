@@ -82,42 +82,57 @@ export default class VideoContextVisualisation {
         })
     }
 
-    setEdgeColours (data) {
-        const crossfadeNodeIds = Object.keys(data)
-            .filter(id => {
-                const props = data[id]
-                const type = props.type
-                if (type === 'TransitionNode' || type === 'EffectNode') {
-                    return props.definition.title === 'Cross-Fade'
-                }
-                return false
-            })
-
-        crossfadeNodeIds.forEach(id => {
-            const props = data[id]
-            const mix = props.properties.mix
-
-            const input0IsConnected = props.inputs.find(inp => inp.index === 0)
-            if (input0IsConnected) {
-                const input0Id = props.inputs.find(inp => inp.index === 0).id
-                const input0Edge = this._cy.getElementById(`${id}_${input0Id}`)
-                const input0Opacity = 1 - mix
-                input0Edge.style('opacity', input0Opacity)
-            }
-
-            const input1IsConnected = props.inputs.find(inp => inp.index === 1)
-            if (input1IsConnected) {
-                const input1Id = props.inputs.find(inp => inp.index === 1).id
-                const input1Edge = this._cy.getElementById(`${id}_${input1Id}`)
-                const input1Opacity = mix
-                input1Edge.style('opacity', input1Opacity)
-            }
-        })
-    }
-
     setValues (data) {
         this.setNodes(data)
         this.setEdges(data)
-        this.setEdgeColours(data)
+        const edges = this._cy.$(ele => ele.isEdge())
+        edges.forEach(edge => {
+            setEdgeColours(edge, data)
+        })
+    }
+}
+
+const inputIdFromGraphNodeAtPosition = (node, i) => node.inputs[i] ? node.inputs[i].id : null
+
+function setEdgeColours (edge, data) {
+    // const rules = [
+    //     (edge, data) =>
+    // ]
+    const targetId = edge.target().id()
+    const sourceId = edge.source().id()
+    const targetData = data[targetId]
+    // const sourceData = data[sourceId]
+    if (targetData.type === 'Destination') {
+        return
+    }
+
+    // It must be a processing node of some kind.
+    switch (targetData.definition.title) {
+    case 'Cross-Fade': {
+        const mix = targetData.properties.mix
+        const input0Id = inputIdFromGraphNodeAtPosition(targetData, 0)
+        const input1Id = inputIdFromGraphNodeAtPosition(targetData, 1)
+
+        let opacity
+        if (sourceId === input0Id) {
+            opacity = 1 - mix
+        } else if (sourceId === input1Id) {
+            opacity = mix
+        } else {
+            // Unlikely - this must be a CompositingNode. Weird situation but
+            // it's correct to set opacity to zero as transition shader sets
+            // everything other than inputs 0 and 1 to pure alpha.
+            opacity = 0
+        }
+        edge.style('opacity', opacity)
+        return
+    }
+    case 'Opacity': {
+        edge.style('opacity', targetData.properties.opacity)
+        return
+    }
+    default: {
+        return
+    }
     }
 }
