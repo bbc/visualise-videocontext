@@ -84,6 +84,9 @@ export default class VideoContextVisualisation {
     }
 
     setValues (data) {
+        if (typeof data === 'string') {
+            data = JSON.parse(data)
+        }
         this._setNodes(data)
         this._setEdges(data)
         const edges = this._cy.$(ele => ele.isEdge())
