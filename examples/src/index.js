@@ -35,3 +35,5 @@ setInterval(() => {
     const json = JSON.parse(VideoContext.exportToJSON(vc))
     vis.setData(json)
 }, 100)
+
+window.__GET_VIDEOCONTEXT_JSON__ = () => VideoContext.exportToJSON(vc)
