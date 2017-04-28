@@ -48,6 +48,8 @@ export default class VideoContextVisualisation {
             name: 'dagre',
             rankDir: 'LR',
         }).run()
+        this._cy.minZoom(0)
+        this._cy.fit()
         this._cy.minZoom(this._cy.zoom())
     }
 
