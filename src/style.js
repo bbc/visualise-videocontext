@@ -67,9 +67,9 @@ const createLabel = props => {
     case 'VideoNode':
         return `VideoNode\n${props.url}\nstart: ${props.start}\nstop: ${props.stop}`
     case 'ImageNode':
-        return `ImageNode\n${props.url}`
+        return `ImageNode\n${props.url}\nstart: ${props.start}\nstop: ${props.stop}`
     case 'CanvasNode':
-        return 'CanvasNode'
+        return `CanvasNode\nstart: ${props.start}\nstop: ${props.stop}`
     case 'CompositingNode':
         return `CompositingNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}`
     case 'TransitionNode':
