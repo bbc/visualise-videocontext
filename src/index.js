@@ -1,7 +1,7 @@
 import cytoscape from 'cytoscape'
 import cydagre from 'cytoscape-dagre'
 import { createNode, animateNodeChange } from './utils.js'
-import { setEdgeColours, setNodeLabel } from './style.js'
+import { setEdgeColours, setNodeColours, setNodeLabel } from './style.js'
 
 cydagre(cytoscape)
 
@@ -92,6 +92,11 @@ export default class VideoContextVisualisation {
         const edges = this._cy.$(ele => ele.isEdge())
         edges.forEach(edge => {
             setEdgeColours(edge, data)
+        })
+
+        const nodes = this._cy.$(ele => ele.isNode())
+        nodes.forEach(node => {
+            setNodeColours(node, data)
         })
     }
 }

@@ -46,6 +46,22 @@ export function setEdgeColours (edge, data) {
     }
 }
 
+export function setNodeColours (node, data) {
+    const nodeID = node.data().id
+    const nodeData = data[nodeID]
+    const stateStyle = {
+        'waiting': '#444',
+        'sequenced': '#228',
+        'playing': '#080',
+        'paused': '#242',
+        'ended': '#008',
+        'error': '#800',
+    }
+    if (nodeData.state) {
+        node.style('background-color', stateStyle[nodeData.state])
+    }
+}
+
 const formatTransitionInfo = transition => `Start: ${transition.start}s, value ${transition.current}. End: ${transition.end}s, value ${transition.target}`
 
 const formatTransitions = props => {
