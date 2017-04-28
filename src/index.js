@@ -99,4 +99,8 @@ export default class VideoContextVisualisation {
             setNodeColours(node, data)
         })
     }
+
+    destroy () {
+        this._cy.destroy()
+    }
 }
