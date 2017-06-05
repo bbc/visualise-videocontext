@@ -6,6 +6,12 @@ const stringify = properties => (
     ))
 )
 
+const stringifyTopLevelObject = properties => {
+    const props = Object.keys(properties)
+    const rows = props.map(prop => `${prop}: ${stringify(properties[prop])}`)
+    return `{\n` + rows.join('\n') + `\n}`
+}
+
 const inputIdFromGraphNodeAtPosition = (node, i) => node.inputs[i] ? node.inputs[i].id : null
 
 export function setEdgeColours (edge, data) {
@@ -64,7 +70,7 @@ export function setNodeColours (node, data) {
     }
 }
 
-const formatTransitionInfo = transition => `Start: ${transition.start}s, value ${transition.current}. End: ${transition.end}s, value ${transition.target}`
+const formatTransitionInfo = transition => `Times: ${transition.start}s-${transition.end}s, Tweens: ${transition.current}-${transition.target}`
 
 const formatTransitions = props => {
     const transitions = props.transitions
@@ -83,18 +89,18 @@ const formatTransitions = props => {
 const createLabel = props => {
     switch (props.type) {
     case 'VideoNode':
-        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\nstart: ${props.start}\nstop: ${props.stop}`
+        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
     case 'ImageNode':
-        return `ImageNode\n${breakLabelIntoLines(props.url, 25)}\nstart: ${props.start}\nstop: ${props.stop}`
+        return `ImageNode\nURL:${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
     case 'CanvasNode':
-        return `CanvasNode\nstart: ${props.start}\nstop: ${props.stop}`
+        return `CanvasNode\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
     case 'CompositingNode':
-        return `CompositingNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}`
+        return `CompositingNode\nDEFINITION: ${props.definition.title}\n\nSTATE: ${stringifyTopLevelObject(props.properties)}`
     case 'TransitionNode':
         const transitionsString = formatTransitions(props)
-        return `TransitionNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}\nTransitions:\n${transitionsString}`
+        return `TransitionNode\nDEFINITION: ${props.definition.title}\n\nSTATE: ${stringifyTopLevelObject(props.properties)}\nTRANSITIONS:\n${transitionsString}`
     case 'EffectNode':
-        return `EffectNode\nDefinition: ${props.definition.title}\nState: ${stringify(props.properties)}`
+        return `EffectNode\nDEFINITION: ${props.definition.title}\n\nSTATE: ${stringifyTopLevelObject(props.properties)}`
     case 'Destination':
         return 'Destination'
     default:
