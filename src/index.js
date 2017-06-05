@@ -54,7 +54,14 @@ export default class VideoContextVisualisation {
     }
 
     _setNodes (data) {
-        Object.keys(data).forEach(id => {
+        const desiredNodeIds = Object.keys(data)
+
+        // Delete nodes that no longer exist
+        const unwantedNodes = this._cy.nodes().filter(node => !desiredNodeIds.includes(node.id()))
+        unwantedNodes.remove()
+
+        // Add/update remaining nodes
+        desiredNodeIds.forEach(id => {
             const props = data[id]
             let ele = this._cy.getElementById(id)
             if (ele.length === 0) {
@@ -68,19 +75,36 @@ export default class VideoContextVisualisation {
     }
 
     _setEdges (data) {
+        const createEdgeId = (fromId, toId) => `${fromId}_${toId}`
+
+        // Parse the videocontext data
+        const desiredEdges = []
         Object.keys(data).forEach(id => {
             const props = data[id]
             if (props.inputs) {
                 props.inputs.forEach(inp => {
-                    const edgeId = `${id}_${inp.id}`
-                    if (this._cy.getElementById(edgeId).length === 0) {
-                        this._cy.add({ data: {
-                            id: `${id}_${inp.id}`,
-                            source: inp.id,
-                            target: id,
-                        }})
-                    }
+                    desiredEdges.push({
+                        from: inp.id,
+                        to: id,
+                    })
                 })
+            }
+        })
+
+        // Delete edges that no longer exist
+        const desiredEdgeIds = desiredEdges.map(edgeData => createEdgeId(edgeData.from, edgeData.to))
+        const unwantedEdges = this._cy.edges().filter(edge => !desiredEdgeIds.includes(edge.id()))
+        unwantedEdges.remove()
+
+        // Add edges that need creating
+        desiredEdges.forEach(edgeData => {
+            const edgeId = `${edgeData.from}_${edgeData.to}`
+            if (this._cy.getElementById(edgeId).length === 0) {
+                this._cy.add({ data: {
+                    id: edgeId,
+                    source: edgeData.from,
+                    target: edgeData.to,
+                }})
             }
         })
     }
