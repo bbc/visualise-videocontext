@@ -15,3 +15,17 @@ export const animateNodeChange = ele => {
 }
 
 export default createNode
+
+const splitStringAtIndex = (string, index) => [
+    string.substring(0, index),
+    string.substring(index),
+]
+
+export const breakLabelIntoLines = (label, maxLength) => {
+    if (label.length > maxLength) {
+        const [first, second] = splitStringAtIndex(label, maxLength)
+        return [first, breakLabelIntoLines(second, maxLength)].join('\n')
+    } else {
+        return label
+    }
+}

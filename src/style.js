@@ -1,3 +1,5 @@
+import { breakLabelIntoLines } from './utils'
+
 const stringify = properties => (
     JSON.stringify(properties, (key, val) => (
         val.toFixed ? Number(val.toFixed(2)) : val
@@ -81,9 +83,9 @@ const formatTransitions = props => {
 const createLabel = props => {
     switch (props.type) {
     case 'VideoNode':
-        return `VideoNode\n${props.url}\nstart: ${props.start}\nstop: ${props.stop}`
+        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\nstart: ${props.start}\nstop: ${props.stop}`
     case 'ImageNode':
-        return `ImageNode\n${props.url}\nstart: ${props.start}\nstop: ${props.stop}`
+        return `ImageNode\n${breakLabelIntoLines(props.url, 25)}\nstart: ${props.start}\nstop: ${props.stop}`
     case 'CanvasNode':
         return `CanvasNode\nstart: ${props.start}\nstop: ${props.stop}`
     case 'CompositingNode':
