@@ -113,16 +113,18 @@ export default class VideoContextVisualisation {
         if (typeof data === 'string') {
             data = JSON.parse(data)
         }
-        this._setNodes(data)
-        this._setEdges(data)
+        const nodes = data.nodes
+
+        this._setNodes(nodes)
+        this._setEdges(nodes)
         const edges = this._cy.$(ele => ele.isEdge())
         edges.forEach(edge => {
-            setEdgeColours(edge, data)
+            setEdgeColours(edge, nodes)
         })
 
-        const nodes = this._cy.$(ele => ele.isNode())
-        nodes.forEach(node => {
-            setNodeColours(node, data)
+        const renderedNodes = this._cy.$(ele => ele.isNode())
+        renderedNodes.forEach(renderedNode => {
+            setNodeColours(renderedNode, nodes)
         })
     }
 

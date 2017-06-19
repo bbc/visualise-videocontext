@@ -23,7 +23,7 @@ transition.connect(vc.destination)
 
 vc.play()
 
-const json = JSON.parse(VideoContext.exportToJSON(vc))
+const json = VideoContext.snapshot(vc)
 
 const canvas = document.getElementById('vis')
 const vis = new VideoContextVisualisation(canvas)
@@ -32,7 +32,7 @@ vis.setData(json)
 vis.render()
 
 setInterval(() => {
-    const json = JSON.parse(VideoContext.exportToJSON(vc))
+    const json = VideoContext.snapshot(vc)
     vis.setData(json)
 }, 100)
 

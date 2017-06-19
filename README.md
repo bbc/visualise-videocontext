@@ -20,12 +20,12 @@ const div = document.getElementById('vis')
 
 const vis = new VideoContextVisualisation(div)
 
-vis.setData(JSON.parse(VideoContext.exportToJSON(vc)))
+vis.setData(VideoContext.snapshot(vc))
 vis.render()
 
 // Update regularly - could also use VideoContext's built-in callbacks to trigger this.
 setInterval(() => {
-    vis.setData(JSON.parse(VideoContext.exportToJSON(vc)))
+    vis.setData(VideoContext.snapshot(vc))
     // No need to call render() a second time
 }, 100)
 ```
