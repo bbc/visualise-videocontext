@@ -1,4 +1,4 @@
-import { breakLabelIntoLines } from './utils'
+import { breakLabelIntoLines, capitaliseFirstLetter } from './utils'
 
 const stringify = properties => (
     JSON.stringify(properties, (key, val) => (
@@ -89,11 +89,11 @@ const formatTransitions = props => {
 const createLabel = props => {
     switch (props.type) {
     case 'VideoNode':
-        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
+        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'ImageNode':
-        return `ImageNode\nURL:${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
+        return `ImageNode\nURL:${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'CanvasNode':
-        return `CanvasNode\n\nSTART: ${props.start}\nSTOP: ${props.stop}`
+        return `CanvasNode\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'CompositingNode':
         return `CompositingNode\nDEFINITION: ${props.definition.title}\n\nSTATE: ${stringifyTopLevelObject(props.properties)}`
     case 'TransitionNode':
