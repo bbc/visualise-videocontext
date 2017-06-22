@@ -26,7 +26,15 @@ vc.play()
 const json = VideoContext.snapshot(vc)
 
 const canvas = document.getElementById('vis')
-const vis = new VideoContextVisualisation(canvas)
+
+const colours = {
+    active: '#51F3AC',
+    inactive: '#33986B',
+    error: '#F3516C',
+    processing: '#F35198',
+    destination: '#000',
+}
+const vis = new VideoContextVisualisation(canvas, colours)
 
 vis.setData(json)
 vis.render()

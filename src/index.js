@@ -6,21 +6,28 @@ import { setEdgeColours, setNodeColours, setNodeLabel } from './style.js'
 cydagre(cytoscape)
 
 export default class VideoContextVisualisation {
-    constructor (div) {
+    constructor (div, colours = {}) {
+        this._colours = {
+            active: colours.active || '#0F0',
+            inactive: colours.inactive || '#0D0',
+            processing: colours.processing || '#F0F',
+            error: colours.error || '#F00',
+            destination: colours.destination || '#000',
+        }
         this._cy = cytoscape({
             container: div,
             elements: [],
             style: [ // the stylesheet for the graph
                 {
-                    selector: '.VideoNode,.ImageNode',
+                    selector: '.TransitionNode,.CompositingNode,.EffectNode',
                     style: {
-                        'background-color': '#F00',
+                        'background-color': this._colours.processing,
                     },
                 },
                 {
-                    selector: '.TransitionNode,.CompositingNode,.EffectNode',
+                    selector: '.Destination',
                     style: {
-                        'background-color': '#00F',
+                        'background-color': this._colours.destination,
                     },
                 },
                 {
@@ -33,10 +40,17 @@ export default class VideoContextVisualisation {
                 {
                     selector: 'edge',
                     style: {
-                        'width': 5,
+                        'width': 7,
                         'line-color': '#000',
                         'mid-target-arrow-color': '#000',
                         'mid-target-arrow-shape': 'triangle',
+                    },
+                },
+                {
+                    selector: 'node',
+                    style: {
+                        'width': 50,
+                        'height': 50,
                     },
                 },
             ],
@@ -124,7 +138,7 @@ export default class VideoContextVisualisation {
 
         const renderedNodes = this._cy.$(ele => ele.isNode())
         renderedNodes.forEach(renderedNode => {
-            setNodeColours(renderedNode, nodes)
+            setNodeColours(renderedNode, nodes, this._colours)
         })
     }
 

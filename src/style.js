@@ -54,18 +54,18 @@ export function setEdgeColours (edge, data) {
     }
 }
 
-export function setNodeColours (node, data) {
+export function setNodeColours (node, data, colours) {
     const nodeID = node.data().id
     const nodeData = data[nodeID]
-    const stateStyle = {
-        'waiting': '#444',
-        'sequenced': '#228',
-        'playing': '#080',
-        'paused': '#242',
-        'ended': '#008',
-        'error': '#800',
-    }
     if (nodeData.state) {
+        const stateStyle = {
+            'waiting': colours.inactive,
+            'sequenced': colours.inactive,
+            'playing': colours.active,
+            'paused': colours.active,
+            'ended': colours.inactive,
+            'error': colours.error,
+        }
         node.style('background-color', stateStyle[nodeData.state])
     }
 }
