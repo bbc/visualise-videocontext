@@ -1,3 +1,5 @@
+// Ben Robinson, © BBC Research & Development, 2017
+
 import cytoscape from 'cytoscape'
 import cydagre from 'cytoscape-dagre'
 import { createNode, animateNodeChange } from './utils.js'
