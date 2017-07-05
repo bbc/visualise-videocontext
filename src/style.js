@@ -1,8 +1,10 @@
 import { breakLabelIntoLines, capitaliseFirstLetter } from './utils'
 
+const rounded = num => Math.round(num * 100) / 100
+
 const stringify = properties => (
     JSON.stringify(properties, (key, val) => (
-        val.toFixed ? Number(val.toFixed(2)) : val
+        typeof val === 'number' ? rounded(val) : val
     ))
 )
 
@@ -70,7 +72,7 @@ export function setNodeColours (node, data, colours) {
     }
 }
 
-const formatTransitionInfo = transition => `Times: ${transition.start}s-${transition.end}s, Tweens: ${transition.current}-${transition.target}`
+const formatTransitionInfo = transition => `Times: ${rounded(transition.start)}s-${rounded(transition.end)}s, Tweens: ${rounded(transition.current)}-${rounded(transition.target)}`
 
 const formatTransitions = props => {
     const transitions = props.transitions
@@ -89,11 +91,11 @@ const formatTransitions = props => {
 const createLabel = props => {
     switch (props.type) {
     case 'VideoNode':
-        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
+        return `VideoNode\n${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${rounded(props.start)}\nSTOP: ${rounded(props.stop)}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'ImageNode':
-        return `ImageNode\nURL:${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
+        return `ImageNode\nURL:${breakLabelIntoLines(props.url, 25)}\n\nSTART: ${rounded(props.start)}\nSTOP: ${rounded(props.stop)}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'CanvasNode':
-        return `CanvasNode\n\nSTART: ${props.start}\nSTOP: ${props.stop}\nSTATE: ${capitaliseFirstLetter(props.state)}`
+        return `CanvasNode\n\nSTART: ${rounded(props.start)}\nSTOP: ${rounded(props.stop)}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'CompositingNode':
         return `CompositingNode\nDEFINITION: ${props.definition.title}\n\nSTATE: ${stringifyTopLevelObject(props.properties)}`
     case 'TransitionNode':

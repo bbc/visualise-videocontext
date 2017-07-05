@@ -9,7 +9,7 @@ video.start(0)
 video.stop(20)
 
 const transition = vc.transition(VideoContext.DEFINITIONS.CROSSFADE)
-transition.transition(0, 0, 0, 1, 'mix')
+transition.transition(0, 0.085567945679567, 0, 1, 'mix')
 transition.transition(5, 8, 1, 0, 'mix')
 
 const mono = vc.effect(VideoContext.DEFINITIONS.MONOCHROME)
