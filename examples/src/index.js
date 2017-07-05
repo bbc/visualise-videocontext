@@ -23,7 +23,7 @@ transition.connect(vc.destination)
 
 vc.play()
 
-const json = VideoContext.snapshot(vc)
+const json = vc.snapshot()
 
 const canvas = document.getElementById('vis')
 
@@ -41,9 +41,7 @@ vis.setData(json)
 vis.render()
 
 setInterval(() => {
-    const json = VideoContext.snapshot(vc)
+    const json = vc.snapshot()
     vis.setData(json)
     vis.render()
 }, 100)
-
-window.__GET_VIDEOCONTEXT_JSON__ = () => VideoContext.exportToJSON(vc)

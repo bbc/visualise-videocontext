@@ -3521,9 +3521,9 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-videocontext@^0.47.0:
-  version "0.47.0"
-  resolved "https://registry.yarnpkg.com/videocontext/-/videocontext-0.47.0.tgz#c99d9cd48a853ff51d05768c254a90f211048dc6"
+videocontext@^0.50.3:
+  version "0.50.3"
+  resolved "https://registry.yarnpkg.com/videocontext/-/videocontext-0.50.3.tgz#ad27665268c67527cad85016171b70d2a06f4ad3"
 
 vm-browserify@0.0.4:
   version "0.0.4"
