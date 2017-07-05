@@ -9,6 +9,7 @@ cydagre(cytoscape)
 
 export default class VideoContextVisualisation {
     constructor (div, colours = {}) {
+        this._div = div
         this._colours = {
             active: colours.active || '#0F0',
             inactive: colours.inactive || '#0D0',
@@ -60,9 +61,10 @@ export default class VideoContextVisualisation {
     }
 
     render () {
+        const divAspectRatio = this._div.clientWidth / this._div.clientHeight
         this._cy.elements().layout({
             name: 'dagre',
-            rankDir: 'LR',
+            rankDir: (divAspectRatio > 1 ? 'LR' : 'TB'),
         }).run()
         this._cy.minZoom(0)
         this._cy.fit()
