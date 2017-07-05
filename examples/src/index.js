@@ -34,14 +34,16 @@ const colours = {
     processing: '#F35198',
     destination: '#000',
 }
-const vis = new VideoContextVisualisation(canvas, colours)
 
+const vis = new VideoContextVisualisation(canvas, colours)
 vis.setData(json)
+
 vis.render()
 
 setInterval(() => {
     const json = VideoContext.snapshot(vc)
     vis.setData(json)
+    vis.render()
 }, 100)
 
 window.__GET_VIDEOCONTEXT_JSON__ = () => VideoContext.exportToJSON(vc)

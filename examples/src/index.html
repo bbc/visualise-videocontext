@@ -4,16 +4,37 @@
         <meta charset="utf-8">
         <title>Test</title>
         <style type="text/css">
-            #vis {
+            .main {
+                box-sizing: border-box;
+                position: absolute;
                 width: 100%;
-                height: 800px;
+                height: 100%;
+                display: flex;
+                flex-flow: column nowrap;
+            }
+            #canvas {
+                width: 768px;
+                height: 432px;
+            }
+            #vis-container {
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 1px;
+                position: relative;
+            }
+            #vis {
+                height: 100%;
+                position: absolute;
+                width: 100%;
                 border-width: 2px;
                 border-style: solid;
             }
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="768" height="432"></canvas>
-        <div id="vis"></div>
+        <div class="main">
+            <canvas id="canvas" width="768" height="432"></canvas>
+            <div id="vis-container"><div id="vis"></div></div>
+        </div>
     </body>
 </html>
