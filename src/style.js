@@ -19,18 +19,24 @@ const inputIdFromGraphNodeAtPosition = (node, i) => node.inputs[i] ? node.inputs
 export function setEdgeColours (edge, data) {
     const targetId = edge.target().id()
     const sourceId = edge.source().id()
-    const targetData = data[targetId]
+    const targetNode = data[targetId]
 
-    if (targetData.type === 'Destination') {
+    if (targetNode.type === 'Destination') {
+        return
+    }
+    // It's not a Destination, so it must be a processing node of some kind.
+
+    if (targetNode.definition.title === 'Opacity') {
+        edge.style('opacity', targetNode.properties.opacity)
         return
     }
 
-    // It must be a processing node of some kind.
-    switch (targetData.definition.title) {
-    case 'Cross-Fade': {
-        const mix = targetData.properties.mix
-        const input0Id = inputIdFromGraphNodeAtPosition(targetData, 0)
-        const input1Id = inputIdFromGraphNodeAtPosition(targetData, 1)
+    if (targetNode.properties.mix != null && targetNode.inputs.length === 2) {
+        // It must be a node that can 'mix' between two sources. We can set
+        // our edge's opacity based on the value of this mix.
+        const mix = targetNode.properties.mix
+        const input0Id = inputIdFromGraphNodeAtPosition(targetNode, 0)
+        const input1Id = inputIdFromGraphNodeAtPosition(targetNode, 1)
 
         let opacity
         if (sourceId === input0Id) {
@@ -45,14 +51,6 @@ export function setEdgeColours (edge, data) {
         }
         edge.style('opacity', opacity)
         return
-    }
-    case 'Opacity': {
-        edge.style('opacity', targetData.properties.opacity)
-        return
-    }
-    default: {
-        return
-    }
     }
 }
 
