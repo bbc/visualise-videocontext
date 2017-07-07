@@ -1,16 +1,17 @@
 {
-    "name": "@bbc/visualise-videocontext",
-    "version": "4.3.0",
+    "name": "visualise-videocontext",
+    "version": "0.0.1",
     "description": "Visualise a videocontext graph",
     "main": "dist/visualise-videocontext.bundle.js",
     "author": "Ben Robinson",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "scripts": {
         "clean": "rimraf dist",
         "start": "webpack --watch",
         "build": "webpack -p",
-        "prepublish": "npm run clean && npm run build"
+        "prepublishOnly": "npm run clean && npm run build"
     },
+    "repository": "https://github.com/bbc/visualise-videocontext/",
     "devDependencies": {
         "babel-core": "^6.23.1",
         "babel-eslint": "^7.1.1",
