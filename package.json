@@ -1,6 +1,6 @@
 {
     "name": "visualise-videocontext",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Visualise a videocontext graph",
     "main": "dist/visualise-videocontext.bundle.js",
     "author": "Ben Robinson",
