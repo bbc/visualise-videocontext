@@ -2,7 +2,7 @@
 
 ```js
 import VideoContext from 'videocontext'
-import VideoContextVisualisation from '@bbc/visualise-videocontext'
+import VideoContextVisualisation from 'visualise-videocontext'
 
 // 1. Set up VideoContext graph
 const vc = new VideoContext(document.getElementById('canvas'))
