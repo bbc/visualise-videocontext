@@ -1,0 +1,26 @@
+extends:
+    - standard
+    - plugin:flowtype/recommended
+plugins:
+    - flowtype
+settings:
+    flowtype:
+        onlyFilesWithFlowAnnotation: true
+parser: babel-eslint
+rules:
+    indent:
+        - error
+        - 4
+    comma-dangle:
+        - error
+        - always-multiline
+    new-parens: 0
+    no-duplicate-imports: 0
+    no-unused-vars: 1
+    flowtype/require-parameter-type:
+        - 2
+        - excludeArrowFunctions: true
+    flowtype/require-return-type:
+        - 2
+        - always
+        - excludeArrowFunctions: true

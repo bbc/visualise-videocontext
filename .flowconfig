@@ -1,0 +1,13 @@
+[ignore]
+.*/examples/.*
+
+[include]
+
+[libs]
+
+[lints]
+all=warn
+
+[options]
+unsafe.enable_getters_and_setters=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore

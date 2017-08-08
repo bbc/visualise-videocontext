@@ -1,27 +1,20 @@
-export const createNode = (id, props) => ({
-    data: { id },
-    classes: props.type,
-})
+// @flow
 
-export const animateNodeChange = ele => {
-    ele.stop(true, false)
-    ele.style('background-blacken', -1)
-    ele.animate({
-        style: {
-            'background-blacken': 0,
-        },
-        duration: 500,
-    })
+export const getOrThrow = <K, V>(map: Map<K, V>, key: K): V => {
+    const value = map.get(key)
+    if (value != null) {
+        return value
+    } else {
+        throw new Error('Could not find key in map.')
+    }
 }
-
-export default createNode
 
 const splitStringAtIndex = (string, index) => [
     string.substring(0, index),
     string.substring(index),
 ]
 
-export const breakLabelIntoLines = (label, maxLength) => {
+export const breakLabelIntoLines = (label: string, maxLength: number) => {
     if (label.length > maxLength) {
         const [first, second] = splitStringAtIndex(label, maxLength)
         return [first, breakLabelIntoLines(second, maxLength)].join('\n')
@@ -30,6 +23,6 @@ export const breakLabelIntoLines = (label, maxLength) => {
     }
 }
 
-export const capitaliseFirstLetter = (string) => {
+export const capitaliseFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
 }
