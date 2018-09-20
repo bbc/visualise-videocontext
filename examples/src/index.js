@@ -1,6 +1,7 @@
 import VideoContextVisualisation from '../../dist/visualise-videocontext.bundle.js'
 import VideoContext from 'videocontext'
 import bunny from 'file-loader!./big_buck_bunny.mp4'
+import jinglebells from 'file-loader!./jbshort.mp3'
 
 const vc = new VideoContext(document.getElementById('canvas'))
 
@@ -20,6 +21,12 @@ video.connect(translucent)
 mono.connect(transition)
 translucent.connect(transition)
 transition.connect(vc.destination)
+
+const audio = vc.audio(jinglebells)
+audio.start(5)
+audio.stop(10)
+
+audio.connect(vc.destination)
 
 vc.play()
 

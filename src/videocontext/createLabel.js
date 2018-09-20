@@ -38,14 +38,9 @@ const formatTransitions = props => {
 const createLabel = (props: Object) => {
     switch (props.type) {
     case 'VideoNode':
-        return `VideoNode\n${breakLabelIntoLines(
-                props.url,
-                25
-            )}\n\nSTART: ${rounded(props.start)}\nSTOP: ${rounded(
-                props.stop
-            )}\nSTATE: ${capitaliseFirstLetter(props.state)}`
     case 'ImageNode':
-        return `ImageNode\nURL:${breakLabelIntoLines(
+    case 'AudioNode':
+        return `${props.type}\nURL:${breakLabelIntoLines(
                 props.url,
                 25
             )}\n\nSTART: ${rounded(props.start)}\nSTOP: ${rounded(
