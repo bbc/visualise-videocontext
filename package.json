@@ -1,37 +1,37 @@
 {
-    "name": "visualise-videocontext",
-    "version": "1.2.2",
-    "description": "Visualise a videocontext graph",
-    "main": "dist/visualise-videocontext.bundle.js",
-    "author": "Ben Robinson",
-    "license": "BSD-3-Clause",
-    "scripts": {
-        "clean": "rimraf dist",
-        "start": "webpack --watch",
-        "build": "webpack -p",
-        "prepublishOnly": "npm run clean && npm run build"
-    },
-    "repository": "https://github.com/bbc/visualise-videocontext/",
-    "devDependencies": {
-        "babel-core": "^6.23.1",
-        "babel-eslint": "^7.1.1",
-        "babel-loader": "^6.3.2",
-        "babel-plugin-transform-object-rest-spread": "^6.23.0",
-        "babel-preset-flow": "^6.23.0",
-        "babel-preset-latest": "^6.22.0",
-        "eslint": "^3.16.1",
-        "eslint-config-standard": "^6.2.1",
-        "eslint-loader": "^1.6.3",
-        "eslint-plugin-flowtype": "^2.35.0",
-        "eslint-plugin-promise": "^3.4.2",
-        "eslint-plugin-standard": "^2.0.1",
-        "flow-bin": "^0.52.0",
-        "rimraf": "^2.6.1",
-        "source-map-loader": "^0.1.6",
-        "webpack": "^2.2.1"
-    },
-    "dependencies": {
-        "cytoscape": "^3.2.16",
-        "cytoscape-dagre": "^1.6.0"
-    }
+  "name": "visualise-videocontext",
+  "version": "1.2.2",
+  "description": "Visualise a videocontext graph",
+  "main": "dist/visualise-videocontext.bundle.js",
+  "author": "Ben Robinson",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "webpack --watch --mode='development'",
+    "build": "webpack -p",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "repository": "https://github.com/bbc/visualise-videocontext/",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^8.0.4",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "flow-bin": "^0.52.0",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.1.6",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "cytoscape": "^3.2.16",
+    "cytoscape-dagre": "^2.2.2"
+  }
 }
