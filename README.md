@@ -1,3 +1,9 @@
+# Introduction
+
+This project provides a visualisation of the graph, showing vertices and edges, from a programmatic configuration of [VideoContext](https://github.com/bbc/videocontext).
+
+`visualise-videocontext` is currently receiving maintenance updates but not under active development.
+
 # Example
 
 ```js
