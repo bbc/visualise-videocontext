@@ -28,7 +28,7 @@
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.1.6",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "cytoscape": "^3.2.16",
